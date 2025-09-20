@@ -30,6 +30,7 @@ El menú es interactivo y se maneja por consola. Toda la lógica está en el mé
 - **[Ing-Emily](https://github.com/Ing-Emily):** Definición de arrays y variables para productos.
 - **[jdgarciaam-lab](https://github.com/jdgarciaam-lab):** Entrada de datos para agregar productos.
 - **[Miltondw](https://github.com/miltondw):** Presentación y generación del reporte final.
+- **[Presentación del codigo](https://docs.google.com/presentation/d/1lcVqvV4G1nZSfGjqKWvztpLIalAJaXQUjND7QpW-YrY/edit?usp=sharing)**
 
 ## 📂 Estructura del proyecto
 │── src/

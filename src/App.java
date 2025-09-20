@@ -21,6 +21,7 @@ public class App {
             System.out.println("\n1. Agregar producto");
             System.out.println("2. Mostrar reporte");
             System.out.println("3. Salir");
+            System.out.println("4. Actualizar producto");
             System.out.print("Ingrese El Numero De La Opcion Deseada: ");
             int opcion = sc.nextInt(); // Leer opción del usuario
             sc.nextLine(); // Limpiar buffer
@@ -35,14 +36,30 @@ public class App {
                         System.out.print("Nombre del producto: ");
                         frutas[numProductos] = sc.nextLine();
 
-                        System.out.print("Cantidad: ");
-                        cantidades[numProductos] = sc.nextInt();
+                        // Validación de cantidad
+                        int cantidad;
+                        do {
+                            System.out.print("Cantidad: ");
+                            cantidad = sc.nextInt();
+                            if (cantidad < 0) {
+                                System.out.println("La cantidad debe ser positiva.");
+                            }
+                        } while (cantidad < 0);
+                        cantidades[numProductos] = cantidad;
 
-                        System.out.print("Precio por unidad: ");
-                        precios[numProductos] = sc.nextFloat();
+                        // Validación de precio
+                        float precio;
+                        do {
+                            System.out.print("Precio por unidad: ");
+                            precio = sc.nextFloat();
+                            if (precio < 0) {
+                                System.out.println("El precio debe ser positivo.");
+                            }
+                        } while (precio < 0);
+                        precios[numProductos] = precio;
+                        sc.nextLine(); // Limpiar buffer
 
                         numProductos++; // Incrementa el contador de productos
-
                         System.out.println("Producto agregado correctamente.");
                     } else {
                         System.out.println("Inventario lleno. No se pueden agregar más productos.");
@@ -74,9 +91,57 @@ public class App {
                     break;
 
                 case 3:
-                    // Opción para isMenu del sistema
+                    // Opción para salir del sistema
                     isMenu = true;
                     System.out.println("Gracias, hasta pronto.");
+                    break;
+                case 4:
+                    // =============================
+                    // Opción para actualizar producto existente por índice
+                    // =============================
+                    if (numProductos == 0) {
+                        System.out.println("No hay productos para actualizar.");
+                        break;
+                    }
+                    System.out.println("Lista de productos:");
+                    for (int i = 0; i < numProductos; i++) {
+                        System.out.printf("[%d] %s - Cantidad: %d - Precio: %.2f\n", i, frutas[i], cantidades[i],
+                                precios[i]);
+                    }
+                    int idx;
+                    do {
+                        System.out.print("Ingrese el índice del producto a actualizar: ");
+                        idx = sc.nextInt();
+                        if (idx < 0 || idx >= numProductos) {
+                            System.out.println("Índice inválido. Intente nuevamente.");
+                        }
+                    } while (idx < 0 || idx >= numProductos);
+                    sc.nextLine(); // Limpiar buffer
+
+                    // Validación de cantidad
+                    int nuevaCantidad;
+                    do {
+                        System.out.print("Nueva cantidad: ");
+                        nuevaCantidad = sc.nextInt();
+                        if (nuevaCantidad < 0) {
+                            System.out.println("La cantidad debe ser positiva.");
+                        }
+                    } while (nuevaCantidad < 0);
+                    cantidades[idx] = nuevaCantidad;
+
+                    // Validación de precio
+                    float nuevoPrecio;
+                    do {
+                        System.out.print("Nuevo precio por unidad: ");
+                        nuevoPrecio = sc.nextFloat();
+                        if (nuevoPrecio < 0) {
+                            System.out.println("El precio debe ser positivo.");
+                        }
+                    } while (nuevoPrecio < 0);
+                    precios[idx] = nuevoPrecio;
+                    sc.nextLine(); // Limpiar buffer
+
+                    System.out.println("Producto actualizado correctamente.");
                     break;
                 default:
                     // Mensaje para opción inválida
